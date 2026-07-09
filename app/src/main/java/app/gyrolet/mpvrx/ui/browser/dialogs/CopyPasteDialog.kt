@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.dialogs
+﻿package app.gyrolet.mpvrx.ui.browser.dialogs
 
 import app.gyrolet.mpvrx.ui.icons.Icon
 import app.gyrolet.mpvrx.ui.icons.Icons
@@ -77,14 +77,14 @@ fun FileOperationProgressDialog(
           }
           progress.isComplete -> {
             StatusCard(
-              message = "Operation completed successfully!",
+              message = "操作已成功完成！",
               containerColor = MaterialTheme.colorScheme.primaryContainer,
               contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             )
           }
           progress.isCancelled -> {
             StatusCard(
-              message = "Operation cancelled",
+              message = "操作已取消",
               containerColor = MaterialTheme.colorScheme.secondaryContainer,
               contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
             )
@@ -114,13 +114,13 @@ fun FileOperationProgressDialog(
 
             // Current File Progress
             ProgressSection(
-              label = "Current file",
+              label = "当前文件",
               progress = progress.currentFileProgress,
             )
 
             // Overall Progress
             ProgressSection(
-              label = "Overall progress",
+              label = "总体进度",
               progress = progress.overallProgress,
             )
 
@@ -141,11 +141,11 @@ fun FileOperationProgressDialog(
         if (isOperationComplete) {
           Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             SummaryRow(
-              label = "Files processed",
+              label = "已处理文件",
               value = "${progress.currentFileIndex} / ${progress.totalFiles}",
             )
             SummaryRow(
-              label = "Total size",
+              label = "总大小",
               value = CopyPasteOps.formatBytes(progress.totalBytes),
             )
           }
@@ -162,7 +162,7 @@ fun FileOperationProgressDialog(
             ),
           shape = MaterialTheme.shapes.extraLarge,
         ) {
-          Text("Done", fontWeight = FontWeight.Bold)
+          Text("完成", fontWeight = FontWeight.Bold)
         }
       } else {
         TextButton(
@@ -171,10 +171,10 @@ fun FileOperationProgressDialog(
         ) {
           Icon(
             imageVector = Icons.Default.Cancel,
-            contentDescription = "Cancel",
+            contentDescription = "取消",
             modifier = Modifier.padding(end = 4.dp),
           )
-          Text("Cancel", fontWeight = FontWeight.Medium)
+          Text("取消", fontWeight = FontWeight.Medium)
         }
       }
     },
@@ -189,7 +189,7 @@ fun FileOperationProgressDialog(
 @Composable
 fun LoadingDialog(
   isOpen: Boolean,
-  message: String = "Loading...",
+  message: String = "加载中...",
   onDismissRequest: () -> Unit = {},
 ) {
   if (!isOpen) return

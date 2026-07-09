@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.dialogs
+﻿package app.gyrolet.mpvrx.ui.browser.dialogs
 
 import app.gyrolet.mpvrx.ui.icons.Icon
 import app.gyrolet.mpvrx.ui.icons.Icons
@@ -87,7 +87,7 @@ fun DeleteConfirmationDialog(
               modifier = Modifier.size(20.dp),
             )
             Text(
-              text = "This action cannot be undone. The selected item${if (itemCount == 1) "" else "s"} will be permanently deleted.",
+              text = "此操作无法撤销，所选项目将被永久删除。",
               style = MaterialTheme.typography.bodyMedium,
               fontWeight = FontWeight.Medium,
               color = MaterialTheme.colorScheme.onErrorContainer,
@@ -172,7 +172,7 @@ fun DeleteConfirmationDialog(
           modifier = Modifier.size(16.dp),
         )
         Spacer(modifier = Modifier.width(4.dp))
-        Text("Cancel", fontWeight = FontWeight.Medium)
+        Text("取消", fontWeight = FontWeight.Medium)
       }
     },
     containerColor = MaterialTheme.colorScheme.surface,

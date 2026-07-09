@@ -100,7 +100,7 @@ object AboutScreen : Screen {
     // Show toast when no update is available after manual check (only if update feature is enabled)
     LaunchedEffect(updateState) {
         if (BuildConfig.ENABLE_UPDATE_FEATURE && updateViewModel != null && updateState is UpdateViewModel.UpdateState.NoUpdate) {
-            Toast.makeText(context, "Already using latest version", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "已是最新版本", Toast.LENGTH_SHORT).show()
             updateViewModel.dismissNoUpdate()
         }
     }
@@ -477,7 +477,7 @@ object AboutScreen : Screen {
         }
 
         // System Stats Section
-        PreferenceSectionHeader(title = "System")
+PreferenceSectionHeader(title = "系统")
 
         val systemStats = remember { collectSystemStats(context) }
         PreferenceCard {

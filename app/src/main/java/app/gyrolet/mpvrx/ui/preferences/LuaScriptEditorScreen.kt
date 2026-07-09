@@ -131,7 +131,7 @@ data class LuaScriptEditorScreen(
         try {
           if (mpvConfStorageLocation.isBlank()) {
             withContext(Dispatchers.Main) {
-              Toast.makeText(context, "No storage location set", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "未设置存储位置", Toast.LENGTH_LONG).show()
             }
             return@launch
           }
@@ -139,7 +139,7 @@ data class LuaScriptEditorScreen(
           val tree = DocumentFile.fromTreeUri(context, mpvConfStorageLocation.toUri())
           if (tree == null) {
             withContext(Dispatchers.Main) {
-              Toast.makeText(context, "No storage location set", Toast.LENGTH_LONG).show()
+              Toast.makeText(context, "未设置存储位置", Toast.LENGTH_LONG).show()
             }
             return@launch
           }
@@ -159,7 +159,7 @@ data class LuaScriptEditorScreen(
           val scriptFile = existing ?: scriptsDir.createFile("text/plain", finalFileName)?.also { it.renameTo(finalFileName) }
           val uri = scriptFile?.uri ?: run {
             withContext(Dispatchers.Main) {
-              Toast.makeText(context, "Failed to create file", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "创建文件失败", Toast.LENGTH_LONG).show()
             }
             return@launch
           }
@@ -169,7 +169,7 @@ data class LuaScriptEditorScreen(
             out.flush()
           } ?: run {
             withContext(Dispatchers.Main) {
-              Toast.makeText(context, "Failed to open output stream", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "打开输出流失败", Toast.LENGTH_LONG).show()
             }
             return@launch
           }
@@ -181,7 +181,7 @@ data class LuaScriptEditorScreen(
           }
         } catch (e: Exception) {
           withContext(Dispatchers.Main) {
-            Toast.makeText(context, "Failed to save: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "保存失败: ${e.message}", Toast.LENGTH_LONG).show()
           }
         }
       }
@@ -309,7 +309,7 @@ data class LuaScriptEditorScreen(
                 Box {
                   if (fileName.isEmpty()) {
                     Text(
-                      text = "Script name",
+                      text = "脚本名称",
                       style = MaterialTheme.typography.headlineSmall.copy(
                         fontWeight = FontWeight.ExtraBold,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
@@ -347,7 +347,7 @@ data class LuaScriptEditorScreen(
             }
             if (hasUnsavedChanges) {
               Text(
-                text = "Unsaved changes",
+                text = "未保存的更改",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.secondary,
               )

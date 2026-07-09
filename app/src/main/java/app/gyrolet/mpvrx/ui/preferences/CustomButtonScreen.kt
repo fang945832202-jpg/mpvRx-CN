@@ -158,9 +158,9 @@ object CustomButtonScreen : Screen {
                     context.contentResolver.openOutputStream(it)?.use { output ->
                         output.write(xmlContent.toByteArray())
                     }
-                    Toast.makeText(context, "Buttons exported successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "按钮导出成功", Toast.LENGTH_SHORT).show()
                 }.onFailure { e ->
-                    Toast.makeText(context, "Export failed: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "导出失败: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -183,7 +183,7 @@ object CustomButtonScreen : Screen {
                     
                     showImportDialog = true
                 }.onFailure { e ->
-                    Toast.makeText(context, "Failed to read file: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "读取文件失败: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -231,13 +231,13 @@ object CustomButtonScreen : Screen {
                     title = {
                         Column {
                             Text(
-                                text = "Custom Buttons",
+                                text = "自定义按钮",
                                 style = MaterialTheme.typography.headlineSmall,
                                 fontWeight = FontWeight.ExtraBold,
                                 color = MaterialTheme.colorScheme.primary,
                             )
                             Text(
-                                text = "Drag to reorder • Tap any slot to expand & edit",
+                                text = "拖动以重新排序 • 点击任意槽位展开和编辑",
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -328,14 +328,14 @@ object CustomButtonScreen : Screen {
                             verticalArrangement = Arrangement.spacedBy(12.dp)
                         ) {
                             Text(
-                                text = "Import / Export",
+                                text = "导入 / 导出",
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface,
                             )
                             
                             Text(
-                                text = "Backup or share all your custom buttons with their script code as an XML file",
+                                text = "备份或分享所有自定义按钮及其脚本代码为 XML 文件",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -805,7 +805,7 @@ fun ButtonExpandedContent(
         ) {
             Column(Modifier.weight(1f)) {
                 Text(
-                    text  = "Button enabled",
+                    text  = "按钮已启用",
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Medium,
                     color = MaterialTheme.colorScheme.onSurface,
@@ -937,7 +937,7 @@ fun LuaEditorEntryCard(
                     )
                 } else {
                     Text(
-                        text = "Tap to write code...",
+                        text = "点击编写代码...",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                     )
@@ -975,13 +975,13 @@ fun ImportSelectionScreen(
                 title = {
                     Column {
                         Text(
-                            text = "Select Buttons to Import",
+                            text = "选择要导入的按钮",
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary,
                         )
                         Text(
-                            text = "Choose which buttons to import",
+                            text = "选择要导入的按钮",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -1122,7 +1122,7 @@ fun ImportSelectionScreen(
                                     )
                                     Spacer(Modifier.width(4.dp))
                                     Text(
-                                        text = "Will overwrite existing button",
+                                        text = "将覆盖现有按钮",
                                         style = MaterialTheme.typography.labelSmall,
                                         color = MaterialTheme.colorScheme.error,
                                     )

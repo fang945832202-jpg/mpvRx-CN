@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.dialogs
+﻿package app.gyrolet.mpvrx.ui.browser.dialogs
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -118,7 +118,7 @@ fun BulkAiRenameDialog(
       deferred.forEach { it.join() }
 
       if (results.isEmpty()) {
-        errorMessage = "AI rename failed for all ${failCount} items. Check your model/API key."
+        errorMessage = "所有 ${failCount} 个项目的 AI 重命名均失败，请检查模型/API 密钥。"
         phase = RenamePhase.IDLE
         return@launch
       }
@@ -154,9 +154,9 @@ fun BulkAiRenameDialog(
     title = {
       Text(
         text = when (phase) {
-          RenamePhase.IDLE -> "Bulk AI Rename"
-          RenamePhase.GENERATING -> "Generating Previews…"
-          RenamePhase.PREVIEW -> "Review & Confirm"
+          RenamePhase.IDLE -> "批量 AI 重命名"
+          RenamePhase.GENERATING -> "正在生成预览..."
+          RenamePhase.PREVIEW -> "审核并确认"
         },
         style = MaterialTheme.typography.headlineMedium,
         fontWeight = FontWeight.Bold,
@@ -166,12 +166,12 @@ fun BulkAiRenameDialog(
       Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         when {
           !canUseAi -> Text(
-            "AI Rename is disabled. Enable it in Settings → AI Integration.",
+            "AI 重命名已禁用。请在设置 → AI 集成中启用。",
             color = MaterialTheme.colorScheme.error,
           )
 
           phase == RenamePhase.IDLE -> Text(
-            "AI will suggest new names for ${selectedVideos.size} selected file(s). " +
+            "AI 将为 ${selectedVideos.size} selected file(s). " +
               "You can review and edit each name before confirming.",
             style = MaterialTheme.typography.bodyMedium,
           )
@@ -182,7 +182,7 @@ fun BulkAiRenameDialog(
           ) {
             CircularProgressIndicator(modifier = Modifier.padding(bottom = 8.dp))
             Text(
-              "Processing ${selectedVideos.size} file(s)…",
+              "正在处理 ${selectedVideos.size} 个文件...",
               style = MaterialTheme.typography.bodyMedium,
             )
           }
@@ -194,7 +194,7 @@ fun BulkAiRenameDialog(
 
             val checkedCount = checkedState.values.count { it }
             Text(
-              "$checkedCount / ${previewItems.size} file(s) selected to rename",
+              "$checkedCount / ${previewItems.size} 个文件已选择重命名",
               style = MaterialTheme.typography.labelMedium,
               color = MaterialTheme.colorScheme.outline,
             )
@@ -234,7 +234,7 @@ fun BulkAiRenameDialog(
                       modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 48.dp),
-                      label = { Text("New name") },
+                      label = { Text("新名称") },
                       suffix = { item.extension?.let { Text(it, color = MaterialTheme.colorScheme.outline) } },
                       singleLine = true,
                       keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
@@ -268,7 +268,7 @@ fun BulkAiRenameDialog(
           ) {
             Icon(imageVector = Icons.Default.AutoAwesome, contentDescription = null, modifier = Modifier.size(18.dp))
             Spacer(Modifier.width(8.dp))
-            Text("Generate Previews", fontWeight = FontWeight.Bold)
+            Text("生成预览", fontWeight = FontWeight.Bold)
           }
 
         RenamePhase.GENERATING -> {}
@@ -297,7 +297,7 @@ fun BulkAiRenameDialog(
         enabled = phase != RenamePhase.GENERATING,
         shape = MaterialTheme.shapes.extraLarge,
       ) {
-        Text(if (phase == RenamePhase.PREVIEW) "Back" else "Cancel", fontWeight = FontWeight.Medium)
+        Text(if (phase == RenamePhase.PREVIEW) "返回" else "Cancel", fontWeight = FontWeight.Medium)
       }
     },
     containerColor = MaterialTheme.colorScheme.surface,

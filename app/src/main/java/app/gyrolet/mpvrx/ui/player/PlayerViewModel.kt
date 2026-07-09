@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.player
+﻿package app.gyrolet.mpvrx.ui.player
 
 import android.content.Context
 import android.content.Intent
@@ -348,7 +348,7 @@ class PlayerViewModel(
     } else {
       IntroDbStatus(
         state = IntroDbStatusState.DISABLED,
-        message = "Online skip markers are disabled",
+        message = "在线跳过标记已禁用",
       )
     },
   )
@@ -1863,7 +1863,7 @@ class PlayerViewModel(
         } else {
           IntroDbStatus(
             state = IntroDbStatusState.DISABLED,
-            message = "Online skip markers are disabled",
+            message = "在线跳过标记已禁用",
           )
         }
       lookupIntroSegments(mediaTitle)
@@ -2637,7 +2637,7 @@ class PlayerViewModel(
       if (selectedSeason == null || selectedEpisode == null) {
         return WyzieSearchPlan(
           request = null,
-          missingSelectionMessage = "Select season and episode for Wyzie.",
+          missingSelectionMessage = "请为 Wyzie 选择季节和剧集。",
         )
       }
       return WyzieSearchPlan(
@@ -2658,7 +2658,7 @@ class PlayerViewModel(
     if (detectedSeason != null || detectedEpisode != null) {
       return WyzieSearchPlan(
         request = null,
-        missingSelectionMessage = "Select the show, season, and episode for Wyzie.",
+        missingSelectionMessage = "请为 Wyzie 选择节目、季节和剧集。",
       )
     }
 
@@ -3636,7 +3636,7 @@ class PlayerViewModel(
         }
       } catch (e: Exception) {
         withContext(Dispatchers.Main) {
-          Toast.makeText(context, "Failed to save snapshot: ${e.message}", Toast.LENGTH_LONG).show()
+          Toast.makeText(context, "保存截图失败: ${e.message}", Toast.LENGTH_LONG).show()
         }
       } finally {
         _isSnapshotLoading.value = false

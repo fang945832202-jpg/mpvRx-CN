@@ -224,7 +224,7 @@ object AiIntegrationScreen : Screen {
             .fillMaxSize()
             .padding(padding),
         ) {
-          item { PreferenceSectionHeader(title = "AI Features") }
+          item { PreferenceSectionHeader(title = "AI 功能") }
 
           item {
             PreferenceCard {
@@ -243,7 +243,7 @@ object AiIntegrationScreen : Screen {
           }
 
           if (enabled) {
-            item { PreferenceSectionHeader(title = "Provider") }
+            item { PreferenceSectionHeader(title = "提供商") }
 
             item {
               PreferenceCard {
@@ -265,7 +265,7 @@ object AiIntegrationScreen : Screen {
             }
 
             if (provider == AiProvider.LOCAL) {
-              item { PreferenceSectionHeader(title = "Hugging Face Setup") }
+              item { PreferenceSectionHeader(title = "Hugging Face 设置") }
               
               item {
                 PreferenceCard {
@@ -298,7 +298,7 @@ object AiIntegrationScreen : Screen {
                 }
               }
 
-              item { PreferenceSectionHeader(title = "Offline Models") }
+              item { PreferenceSectionHeader(title = "离线模型") }
 
               item {
                 Column(
@@ -370,21 +370,21 @@ object AiIntegrationScreen : Screen {
                               aiService.downloadLocalModel(model.id)
                                   .onSuccess {
                                       downloadProgress = DownloadProgress(isComplete = true)
-                                      Toast.makeText(context, "Model downloaded successfully", Toast.LENGTH_SHORT).show()
+                                      Toast.makeText(context, "模型下载成功", Toast.LENGTH_SHORT).show()
                                       if (model.supportsThinking) {
                                           preferences.showThinking.set(true)
                                       }
                                   }
                                   .onFailure { e ->
                                       downloadProgress = DownloadProgress(error = e.message)
-                                      Toast.makeText(context, "Download failed: ${e.message}", Toast.LENGTH_LONG).show()
+                                      Toast.makeText(context, "下载失败: ${e.message}", Toast.LENGTH_LONG).show()
                                   }
                               isDownloading = false
                           }
                       },
                       onDelete = {
                           if (aiService.deleteLocalModel(model.id)) {
-                              Toast.makeText(context, "Model deleted", Toast.LENGTH_SHORT).show()
+                              Toast.makeText(context, "模型已删除", Toast.LENGTH_SHORT).show()
                           }
                       },
                       onSelect = {
@@ -392,7 +392,7 @@ object AiIntegrationScreen : Screen {
                           if (model.supportsThinking) {
                               preferences.showThinking.set(true)
                           }
-                          Toast.makeText(context, "Using ${model.displayName}", Toast.LENGTH_SHORT).show()
+                          Toast.makeText(context, "正在使用 ${model.displayName}", Toast.LENGTH_SHORT).show()
                       },
                       onBenchmark = {
                           benchmarkingModelId = model.id
@@ -400,10 +400,10 @@ object AiIntegrationScreen : Screen {
                               aiService.benchmarkLocalModel(model.id)
                                   .onSuccess {
                                       benchmarks = aiService.getLocalModelBenchmarks()
-                                      Toast.makeText(context, "Benchmark saved: ${it.speedLabel}", Toast.LENGTH_SHORT).show()
+                                      Toast.makeText(context, "基准测试已保存: ${it.speedLabel}", Toast.LENGTH_SHORT).show()
                                   }
                                   .onFailure { e ->
-                                      Toast.makeText(context, "Benchmark failed: ${e.message}", Toast.LENGTH_LONG).show()
+                                      Toast.makeText(context, "基准测试失败: ${e.message}", Toast.LENGTH_LONG).show()
                                   }
                               benchmarkingModelId = null
                           }
@@ -426,7 +426,7 @@ object AiIntegrationScreen : Screen {
               }
 
               if (apiKeyInfo != null) {
-                item { PreferenceSectionHeader(title = "API Configuration") }
+                item { PreferenceSectionHeader(title = "API 配置") }
 
                 item {
                   PreferenceCard {
@@ -537,7 +537,7 @@ object AiIntegrationScreen : Screen {
                   }
                 }
 
-                item { PreferenceSectionHeader(title = "Model") }
+                item { PreferenceSectionHeader(title = "模型") }
 
                 item {
                   PreferenceCard {
@@ -549,7 +549,7 @@ object AiIntegrationScreen : Screen {
                       horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                       Text(
-                        text = "Available Models",
+                        text = "可用模型",
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold,
                       )
@@ -607,7 +607,7 @@ object AiIntegrationScreen : Screen {
                         ) {
                           Column(modifier = Modifier.weight(1f)) {
                             Text(
-                              text = "Model",
+                              text = "模型",
                               style = MaterialTheme.typography.labelLarge,
                               fontWeight = FontWeight.Bold,
                             )
@@ -747,7 +747,7 @@ object AiIntegrationScreen : Screen {
               }
             }
 
-            item { PreferenceSectionHeader(title = "General Settings") }
+            item { PreferenceSectionHeader(title = "常规设置") }
 
             item {
               PreferenceCard {
@@ -761,7 +761,7 @@ object AiIntegrationScreen : Screen {
               }
             }
 
-            item { PreferenceSectionHeader(title = "Features") }
+            item { PreferenceSectionHeader(title = "功能") }
 
             item {
               PreferenceCard {
@@ -794,7 +794,7 @@ object AiIntegrationScreen : Screen {
             }
 
             if (provider != AiProvider.LOCAL) {
-              item { PreferenceSectionHeader(title = "Speech-to-Text [Extreme Experimental]") }
+              item { PreferenceSectionHeader(title = "语音转文本 [极度实验性]") }
 
               item {
                 PreferenceCard {
@@ -890,7 +890,7 @@ object AiIntegrationScreen : Screen {
             }
 
             if (provider != AiProvider.LOCAL) {
-              item { PreferenceSectionHeader(title = "Subtitle Translation") }
+              item { PreferenceSectionHeader(title = "字幕翻译") }
 
               item {
                 PreferenceCard {
@@ -921,7 +921,7 @@ object AiIntegrationScreen : Screen {
               }
             }
 
-            item { PreferenceSectionHeader(title = "Custom Prompt") }
+            item { PreferenceSectionHeader(title = "自定义提示词") }
 
             item {
               PreferenceCard {
@@ -948,7 +948,7 @@ object AiIntegrationScreen : Screen {
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                   ) {
                     Text(
-                      text = "Custom Prompts",
+                      text = "自定义提示词",
                       style = MaterialTheme.typography.labelLarge,
                       fontWeight = FontWeight.Bold,
                     )
@@ -1285,7 +1285,7 @@ private fun SttModelSelector(
               showDialog = true
             }
             .onFailure { e ->
-              Toast.makeText(context, "Failed to load models: ${e.message}", Toast.LENGTH_SHORT).show()
+              Toast.makeText(context, "加载模型失败: ${e.message}", Toast.LENGTH_SHORT).show()
             }
           isLoadingStt = false
         }
@@ -1303,7 +1303,7 @@ private fun SttModelSelector(
     ) {
       Column(modifier = Modifier.weight(1f)) {
         Text(
-          text = "Real-time Model",
+          text = "实时模型",
           style = MaterialTheme.typography.labelLarge,
           fontWeight = FontWeight.Bold,
         )

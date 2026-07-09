@@ -213,7 +213,7 @@ fun SortDialog(
                 )
                 Icon(
                   imageVector = if (isFieldsExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                  contentDescription = if (isFieldsExpanded) "Collapse" else "Expand",
+                  contentDescription = if (isFieldsExpanded) "收起" else "展开",
                   tint = MaterialTheme.colorScheme.onSurfaceVariant,
                   modifier = Modifier.size(20.dp)
                 )
@@ -248,7 +248,7 @@ fun SortDialog(
     },
     confirmButton = {
       TextButton(onClick = onDismiss) {
-        Text(text = "Done")
+        Text(text = "完成")
       }
     },
     containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
@@ -385,7 +385,7 @@ private fun GridColumnsNextSection(
   if (folderGridColumnSelector == null && videoGridColumnSelector == null) return
 
   HorizontalDivider(modifier = Modifier.padding(top = 10.dp))
-  DialogSectionTitle(text = "Grid Columns")
+  DialogSectionTitle(text = "网格列数")
 
   val haptic = LocalHapticFeedback.current
 
@@ -401,12 +401,12 @@ private fun GridColumnsNextSection(
           verticalAlignment = Alignment.CenterVertically
         ) {
           Text(
-            text = "Folder Grid",
+            text = "文件夹网格",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
           )
           Text(
-            text = "${folderGridColumnSelector.currentValue} cols",
+            text = "${folderGridColumnSelector.currentValue} 列",
             style = MaterialTheme.typography.bodySmall,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.primary,
@@ -436,12 +436,12 @@ private fun GridColumnsNextSection(
           verticalAlignment = Alignment.CenterVertically
         ) {
           Text(
-            text = "Video Grid",
+            text = "视频网格",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
           )
           Text(
-            text = "${videoGridColumnSelector.currentValue} cols",
+            text = "${videoGridColumnSelector.currentValue} 列",
             style = MaterialTheme.typography.bodySmall,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.primary,

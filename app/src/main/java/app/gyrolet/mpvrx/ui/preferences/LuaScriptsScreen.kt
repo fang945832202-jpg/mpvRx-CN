@@ -124,7 +124,7 @@ object LuaScriptsScreen : Screen {
 
             context.startActivity(Intent.createChooser(shareIntent, "Share script"))
           } else {
-            Toast.makeText(context, "Script file not found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "未找到脚本文件", Toast.LENGTH_SHORT).show()
           }
         }
       }.onFailure { error ->
@@ -137,7 +137,7 @@ object LuaScriptsScreen : Screen {
         TopAppBar(
           title = {
             Text(
-              text = "Scripts (Lua / JS)",
+              text = "脚本 (Lua/JS)",
               style = MaterialTheme.typography.headlineSmall,
             )
           },
@@ -197,7 +197,7 @@ object LuaScriptsScreen : Screen {
           mpvConfStorageLocation.isBlank() -> {
             item {
               LuaScriptsEmptyState(
-                title = "No MPV folder selected",
+                title = "未选择 MPV 文件夹",
                 summary = "Choose an MPV config folder in Advanced settings to browse and manage scripts.",
               )
             }
@@ -205,7 +205,7 @@ object LuaScriptsScreen : Screen {
           catalog.availableScripts.isEmpty() -> {
             item {
               LuaScriptsEmptyState(
-                title = "No scripts found",
+                title = "未找到脚本",
                 summary = "Put your .lua or .js files inside the MPV scripts folder to manage them here.",
               )
             }

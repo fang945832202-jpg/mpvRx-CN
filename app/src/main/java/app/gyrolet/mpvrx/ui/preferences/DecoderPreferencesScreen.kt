@@ -318,7 +318,7 @@ object DecoderPreferencesScreen : Screen {
                   verticalAlignment = Alignment.CenterVertically
                 ) {
                   Text(
-                    text = "Anime4K Shaders Options",
+                    text = "Anime4K 着色器选项",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.primary,

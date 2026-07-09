@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.dialogs
+﻿package app.gyrolet.mpvrx.ui.browser.dialogs
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -71,12 +71,12 @@ fun RenameDialog(
     when {
       baseName.value.isBlank() -> {
         isError.value = true
-        errorMessage.value = "Name cannot be empty"
+        errorMessage.value = "名称不能为空"
       }
 
       baseName.value.contains("/") || baseName.value.contains("\\") -> {
         isError.value = true
-        errorMessage.value = "Name cannot contain / or \\"
+        errorMessage.value = "名称不能包含 / 或 \\"
       }
 
       else -> {
@@ -110,7 +110,7 @@ fun RenameDialog(
             Modifier
               .fillMaxWidth()
               .focusRequester(focusRequester),
-          label = { Text("New name", fontWeight = FontWeight.Medium) },
+          label = { Text("新名称", fontWeight = FontWeight.Medium) },
           singleLine = false,
           maxLines = 5,
           isError = isError.value,
@@ -147,7 +147,7 @@ fun RenameDialog(
                   }
                   .onFailure { _ ->
                     isError.value = true
-                    errorMessage.value = "AI rename failed. Check API key and model."
+                    errorMessage.value = "AI 重命名失败，请检查 API 密钥和模型。"
                   }
                 isAiLoading = false
               }
@@ -162,7 +162,7 @@ fun RenameDialog(
                 strokeWidth = 2.dp,
               )
               Spacer(modifier = Modifier.width(8.dp))
-              Text("AI is thinking...")
+              Text("AI 思考中...")
             } else {
               Icon(
                 imageVector = Icons.Default.AutoAwesome,
@@ -170,7 +170,7 @@ fun RenameDialog(
                 modifier = Modifier.size(18.dp),
               )
               Spacer(modifier = Modifier.width(8.dp))
-              Text("AI Rename", fontWeight = FontWeight.Medium)
+              Text("AI 重命名", fontWeight = FontWeight.Medium)
             }
           }
         }
@@ -187,7 +187,7 @@ fun RenameDialog(
         shape = MaterialTheme.shapes.extraLarge,
       ) {
         Text(
-          text = "Rename",
+          text = "重命名",
           fontWeight = FontWeight.Bold,
         )
       }
@@ -197,7 +197,7 @@ fun RenameDialog(
         onClick = onDismiss,
         shape = MaterialTheme.shapes.extraLarge,
       ) {
-        Text("Cancel", fontWeight = FontWeight.Medium)
+        Text("取消", fontWeight = FontWeight.Medium)
       }
     },
     containerColor = MaterialTheme.colorScheme.surface,

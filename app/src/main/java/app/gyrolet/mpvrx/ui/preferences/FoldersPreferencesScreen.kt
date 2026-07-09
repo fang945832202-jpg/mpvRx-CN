@@ -162,7 +162,7 @@ object FoldersPreferencesScreen : Screen {
         if (!selectionState.isInSelectionMode) {
 
           // ── Media Library ─────────────────────────────────────────────
-          PreferenceSectionHeader(title = "Media Library")
+          PreferenceSectionHeader(title = "媒体库")
 
           NoMediaPreferenceCard(
             includeNoMediaFolders = includeNoMediaFolders,
@@ -176,7 +176,7 @@ object FoldersPreferencesScreen : Screen {
           Spacer(modifier = Modifier.height(16.dp))
 
           // ── Hidden Folders ────────────────────────────────────────────
-          PreferenceSectionHeader(title = "Hidden Folders")
+          PreferenceSectionHeader(title = "隐藏文件夹")
 
           Text(
             text = stringResource(R.string.pref_folders_summary),
@@ -514,7 +514,7 @@ internal fun StorageRootPickerCard(
       )
       Column(modifier = Modifier.weight(1f)) {
         Text(
-          text = "Base Storage Folder",
+            text = "基础存储文件夹",
           style = MaterialTheme.typography.titleMedium,
           fontWeight = FontWeight.Bold,
         )

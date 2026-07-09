@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.videolist
+﻿package app.gyrolet.mpvrx.ui.browser.videolist
 
 import app.gyrolet.mpvrx.ui.icons.Icon
 import app.gyrolet.mpvrx.ui.icons.Icons
@@ -443,7 +443,7 @@ data class VideoListScreen(
         isOpen = deleteDialogOpen.value,
         onDismiss = { deleteDialogOpen.value = false },
         onConfirm = { selectionManager.deleteSelected() },
-        itemType = "video",
+        itemType = "视频",
         itemCount = selectionManager.selectedCount,
         itemNames = selectionManager.getSelectedItems().map { it.displayName },
       )

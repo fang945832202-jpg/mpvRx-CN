@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.folderlist
+﻿package app.gyrolet.mpvrx.ui.browser.folderlist
 
 import app.gyrolet.mpvrx.ui.icons.Icon
 import app.gyrolet.mpvrx.ui.icons.Icons
@@ -583,7 +583,7 @@ object FolderListScreen : Screen {
                 filePicker.launch(arrayOf("video/*"))
               },
               icon = { Icon(Icons.Filled.FileOpen, contentDescription = null) },
-              text = { Text(text = "Open File") },
+              text = { Text(text = "打开文件") },
             )
 
             FloatingActionButtonMenuItem(
@@ -598,7 +598,7 @@ object FolderListScreen : Screen {
                 }
               },
               icon = { Icon(Icons.Filled.History, contentDescription = null) },
-              text = { Text(text = "Recently Played") },
+              text = { Text(text = "最近播放") },
             )
 
             FloatingActionButtonMenuItem(
@@ -607,7 +607,7 @@ object FolderListScreen : Screen {
                 showLinkDialog.value = true
               },
               icon = { Icon(Icons.Filled.Link, contentDescription = null) },
-              text = { Text(text = "Open Link") },
+              text = { Text(text = "打开链接") },
             )
           }
         },
@@ -868,7 +868,7 @@ object FolderListScreen : Screen {
               }
             },
             currentName = folder.name,
-            itemType = "folder",
+            itemType = "文件夹",
           )
         }
       }
@@ -894,7 +894,7 @@ object FolderListScreen : Screen {
               runCatching {
                 val (deleted, failed) = deleteFolders(foldersToDelete)
                 if (deleted > 0) {
-                  android.widget.Toast.makeText(context, "Deleted successfully", android.widget.Toast.LENGTH_SHORT).show()
+                  android.widget.Toast.makeText(context, "删除成功", android.widget.Toast.LENGTH_SHORT).show()
                 } else if (failed > 0) {
                   android.widget.Toast.makeText(context, "Failed to delete", android.widget.Toast.LENGTH_SHORT).show()
                 }
@@ -905,7 +905,7 @@ object FolderListScreen : Screen {
               viewModel.refresh()
             }
           },
-          itemType = "folder",
+          itemType = "文件夹",
           itemCount = pendingDeleteFolders.size,
           itemNames = pendingDeleteFolders.map { it.name },
         )

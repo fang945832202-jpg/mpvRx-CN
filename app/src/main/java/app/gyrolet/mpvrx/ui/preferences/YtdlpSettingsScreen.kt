@@ -104,7 +104,7 @@ object YtdlpSettingsScreen : Screen {
                 TopAppBar(
                     title = {
                         Text(
-                            text = "yt-dlp Streaming",
+                            text = "yt-dlp 流媒体",
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                         )
@@ -157,7 +157,7 @@ object YtdlpSettingsScreen : Screen {
                         
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "yt-dlp Core Engine",
+                                text = "yt-dlp 核心引擎",
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -189,7 +189,7 @@ object YtdlpSettingsScreen : Screen {
                     }
                 }
 
-                PreferenceSectionHeader(title = "Engine Installer")
+                PreferenceSectionHeader(title = "引擎安装器")
 
                 PreferenceCard {
                     Column(
@@ -280,7 +280,7 @@ object YtdlpSettingsScreen : Screen {
                     }
                 }
 
-                PreferenceSectionHeader(title = "Quality & Format")
+                PreferenceSectionHeader(title = "质量与格式")
 
                 PreferenceCard {
                     Column(
@@ -288,7 +288,7 @@ object YtdlpSettingsScreen : Screen {
                         verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
                     ) {
                         Text(
-                            text = "Streaming Quality",
+                            text = "流媒体质量",
                             style = MaterialTheme.typography.bodyMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
@@ -321,7 +321,7 @@ object YtdlpSettingsScreen : Screen {
                         PreferenceDivider()
 
                         OptionDropdown(
-                            title = "Video Codec",
+                            title = "视频编码",
                             value = codecPreference,
                             values = YtdlCodecPreference.entries,
                             valueLabel = { it.title },
@@ -354,7 +354,7 @@ object YtdlpSettingsScreen : Screen {
                         }
 
                         OptionDropdown(
-                            title = "HDR Preference",
+                            title = "HDR 偏好",
                             value = hdrPreference,
                             values = YtdlHdrPreference.entries,
                             valueLabel = { it.title },
@@ -365,7 +365,7 @@ object YtdlpSettingsScreen : Screen {
                         )
 
                         OptionDropdown(
-                            title = "Container",
+                            title = "容器格式",
                             value = containerPreference,
                             values = YtdlContainerPreference.entries,
                             valueLabel = { it.title },
@@ -376,7 +376,7 @@ object YtdlpSettingsScreen : Screen {
                         )
 
                         OptionDropdown(
-                            title = "Audio Preference",
+                            title = "音频偏好",
                             value = audioPreference,
                             values = YtdlAudioPreference.entries,
                             valueLabel = { it.title },
@@ -404,7 +404,7 @@ object YtdlpSettingsScreen : Screen {
                                     .padding(16.dp)
                             ) {
                                 Text(
-                                    text = "Generated Format String",
+                                    text = "生成的格式字符串",
                                     style = MaterialTheme.typography.labelSmall,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.primary
@@ -423,7 +423,7 @@ object YtdlpSettingsScreen : Screen {
                     }
                 }
 
-                PreferenceSectionHeader(title = "Subtitles & Language")
+                PreferenceSectionHeader(title = "字幕与语言")
 
                 PreferenceCard {
                     Column(
@@ -464,7 +464,7 @@ object YtdlpSettingsScreen : Screen {
                     }
                 }
 
-                PreferenceSectionHeader(title = "Advanced Networking")
+                PreferenceSectionHeader(title = "高级网络")
 
                 PreferenceCard {
                     Column(
@@ -481,7 +481,7 @@ object YtdlpSettingsScreen : Screen {
                         ) {
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
-                                    text = "Advanced Configurations",
+                                    text = "高级配置",
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -617,7 +617,7 @@ object YtdlpSettingsScreen : Screen {
                                 )
 
                                 OptionDropdown(
-                                    title = "Playlist Behavior",
+                                    title = "播放列表行为",
                                     value = playlistMode,
                                     values = YtdlPlaylistMode.entries,
                                     valueLabel = { it.title },

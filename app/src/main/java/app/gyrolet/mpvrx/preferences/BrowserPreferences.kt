@@ -100,10 +100,10 @@ enum class FolderSortType {
   val displayName: String
     get() =
       when (this) {
-        Title -> "Title"
-        Date -> "Date"
-        Size -> "Size"
-        VideoCount -> "Count"
+        Title -> "标题"
+        Date -> "日期"
+        Size -> "大小"
+        VideoCount -> "视频数"
       }
 }
 
@@ -120,10 +120,10 @@ enum class VideoSortType {
   val displayName: String
     get() =
       when (this) {
-        Title -> "Title"
-        Duration -> "Duration"
-        Date -> "Date"
-        Size -> "Size"
+        Title -> "标题"
+        Duration -> "时长"
+        Date -> "日期"
+        Size -> "大小"
       }
 }
 

@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.dialogs
+﻿package app.gyrolet.mpvrx.ui.browser.dialogs
 
 import app.gyrolet.mpvrx.ui.icons.Icon
 import app.gyrolet.mpvrx.ui.icons.Icons
@@ -100,7 +100,7 @@ fun AddToPlaylistDialog(
     onDismissRequest = onDismiss,
     title = {
       Text(
-        text = "Add to Playlist",
+        text = "添加到播放列表",
         style = MaterialTheme.typography.headlineMedium,
         fontWeight = FontWeight.Bold,
       )
@@ -113,9 +113,9 @@ fun AddToPlaylistDialog(
         // Show video count
         Text(
           text = if (videos.size == 1) {
-            "Adding 1 video to playlist"
+            "正在添加 1 个视频到播放列表"
           } else {
-            "Adding ${videos.size} videos to playlist"
+            "正在添加 ${videos.size} 个视频到播放列表"
           },
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -134,7 +134,7 @@ fun AddToPlaylistDialog(
           )
           Spacer(modifier = Modifier.width(8.dp))
           Text(
-            text = "Create New Playlist",
+            text = "创建新播放列表",
             fontWeight = FontWeight.Medium,
           )
         }
@@ -142,7 +142,7 @@ fun AddToPlaylistDialog(
         // Existing playlists
         if (playlists.isNotEmpty()) {
           Text(
-            text = "Existing Playlists",
+            text = "已有播放列表",
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
@@ -191,7 +191,7 @@ fun AddToPlaylistDialog(
         ),
         shape = MaterialTheme.shapes.extraLarge,
       ) {
-        Text("Done", fontWeight = FontWeight.Bold)
+        Text("完成", fontWeight = FontWeight.Bold)
       }
     },
     dismissButton = {
@@ -199,7 +199,7 @@ fun AddToPlaylistDialog(
         onClick = onDismiss,
         shape = MaterialTheme.shapes.extraLarge,
       ) {
-        Text("Cancel", fontWeight = FontWeight.Medium)
+        Text("取消", fontWeight = FontWeight.Medium)
       }
     },
     containerColor = MaterialTheme.colorScheme.surface,
@@ -283,13 +283,13 @@ private fun EmptyPlaylistsMessage() {
         tint = MaterialTheme.colorScheme.onSurfaceVariant,
       )
       Text(
-        text = "No playlists yet",
+        text = "暂无播放列表",
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.Bold,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
       Text(
-        text = "Create your first playlist above",
+        text = "请在上方创建第一个播放列表",
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
@@ -308,7 +308,7 @@ private fun CreatePlaylistDialog(
     onDismissRequest = onDismiss,
     title = {
       Text(
-        text = "Create New Playlist",
+        text = "创建新播放列表",
         style = MaterialTheme.typography.headlineSmall,
         fontWeight = FontWeight.Bold,
       )
@@ -317,7 +317,7 @@ private fun CreatePlaylistDialog(
       OutlinedTextField(
         value = playlistName,
         onValueChange = { playlistName = it },
-        label = { Text("Playlist Name") },
+        label = { Text("播放列表名称") },
         singleLine = true,
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
@@ -341,7 +341,7 @@ private fun CreatePlaylistDialog(
         onClick = onDismiss,
         shape = MaterialTheme.shapes.extraLarge,
       ) {
-        Text("Cancel", fontWeight = FontWeight.Medium)
+        Text("取消", fontWeight = FontWeight.Medium)
       }
     },
     containerColor = MaterialTheme.colorScheme.surface,

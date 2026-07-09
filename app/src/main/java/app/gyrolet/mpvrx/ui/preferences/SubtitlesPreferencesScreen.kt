@@ -625,7 +625,7 @@ object SubtitlesPreferencesScreen : Screen {
                           if (freeItems.isNotEmpty()) {
                             item {
                               Text(
-                                text = "Free Sources",
+                                text = "免费来源",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.padding(vertical = 8.dp)
@@ -684,7 +684,7 @@ object SubtitlesPreferencesScreen : Screen {
                           if (paidItems.isNotEmpty()) {
                             item {
                               Text(
-                                text = "Paid Sources",
+                                text = "付费来源",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.padding(vertical = 8.dp)
@@ -741,7 +741,7 @@ object SubtitlesPreferencesScreen : Screen {
                                   }
                                   if (!isAvailable) {
                                     Text(
-                                      text = "Restricted (Requires Paid API Key)",
+                                      text = "受限（需要付费 API 密钥）",
                                       style = MaterialTheme.typography.bodySmall,
                                       color = MaterialTheme.colorScheme.error
                                     )

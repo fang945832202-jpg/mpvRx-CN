@@ -352,11 +352,11 @@ object AppearancePreferencesScreen : Screen {
                                 value = dualPaneForTablet,
                                 onValueChange = { browserPreferences.dualPaneForTablet.set(it) },
                                 title = {
-                                    Text(text = "Dual Pane View")
+                                    Text(text = "双栏视图")
                                 },
                                 summary = {
                                     Text(
-                                        text = "Enable dual pane layout on tablets in folder view",
+                                        text = "在平板电脑的文件夹视图中启用双栏布局",
                                         color = MaterialTheme.colorScheme.outline,
                                     )
                                 }

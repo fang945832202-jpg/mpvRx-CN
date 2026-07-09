@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.dialogs
+﻿package app.gyrolet.mpvrx.ui.browser.dialogs
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -63,7 +63,7 @@ fun FolderSortDialog(
 
   val folderGridColumnSelector = if (mediaLayoutMode == MediaLayoutMode.GRID && manualGridColumnsEnabled) {
     GridColumnSelector(
-      label = "Folder Grid Columns (${if (isLandscape) "Landscape" else "Portrait"})",
+      label = "文件夹网格列数 (${if (isLandscape) "横屏" else "竖屏"})",
       currentValue = folderGridColumns.coerceIn(1, maxColumns),
       onValueChange = {
         if (isLandscape) browserPreferences.folderGridColumnsLandscape.set(it)
@@ -76,7 +76,7 @@ fun FolderSortDialog(
 
   val videoGridColumnSelector = if (mediaLayoutMode == MediaLayoutMode.GRID && manualGridColumnsEnabled) {
     GridColumnSelector(
-      label = "Video Grid Columns (${if (isLandscape) "Landscape" else "Portrait"})",
+      label = "视频网格列数 (${if (isLandscape) "横屏" else "竖屏"})",
       currentValue = videoGridColumns.coerceIn(1, maxColumns),
       onValueChange = {
         if (isLandscape) browserPreferences.videoGridColumnsLandscape.set(it)
@@ -92,7 +92,7 @@ fun FolderSortDialog(
   SortDialog(
     isOpen = isOpen,
     onDismiss = onDismiss,
-    title = if (isAlbumView) "Sort & View Options" else "View Options",
+    title = if (isAlbumView) "排序与视图选项" else "视图选项",
     sortType = sortType.displayName,
     onSortTypeChange = { typeName ->
       FolderSortType.entries
@@ -115,30 +115,30 @@ fun FolderSortDialog(
     ),
     getLabelForType = { type, _ ->
       when (type) {
-        FolderSortType.Title.displayName -> Pair("A-Z", "Z-A")
-        FolderSortType.Date.displayName -> Pair("Oldest", "Newest")
-        FolderSortType.Size.displayName -> Pair("Smallest", "Largest")
-        else -> Pair("Asc", "Desc")
+        FolderSortType.Title.displayName -> Pair("升序", "降序")
+        FolderSortType.Date.displayName -> Pair("最早", "最新")
+        FolderSortType.Size.displayName -> Pair("最小", "最大")
+        else -> Pair("升序", "降序")
       }
     },
     showSortOptions = isAlbumView,
     viewModeSelector = MultiViewModeSelector(
-      label = "View Mode",
+      label = "视图模式",
       options = listOf(
         ViewModeOption(
-          label = "Folder",
+          label = "文件夹",
           icon = Icons.Filled.ViewModule,
           isSelected = folderViewMode == FolderViewMode.AlbumView,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.AlbumView) }
         ),
         ViewModeOption(
-          label = "Tree",
+          label = "树状",
           icon = Icons.Filled.AccountTree,
           isSelected = folderViewMode == FolderViewMode.FileManager,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.FileManager) }
         ),
         ViewModeOption(
-          label = "Library",
+          label = "媒体库",
           icon = Icons.Filled.VideoLibrary,
           isSelected = folderViewMode == FolderViewMode.MediaLibrary,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.MediaLibrary) }
@@ -146,9 +146,9 @@ fun FolderSortDialog(
       )
     ),
     layoutModeSelector = ViewModeSelector(
-      label = "Layout",
-      firstOptionLabel = "List",
-      secondOptionLabel = "Grid",
+      label = "布局",
+      firstOptionLabel = "列表",
+      secondOptionLabel = "网格",
       firstOptionIcon = Icons.Filled.ViewList,
       secondOptionIcon = Icons.Filled.GridView,
       isFirstOptionSelected = mediaLayoutMode == MediaLayoutMode.LIST,
@@ -161,42 +161,42 @@ fun FolderSortDialog(
     visibilityToggles = buildList {
       add(
         VisibilityToggle(
-          label = "Full Name",
+          label = "完整名称",
           checked = unlimitedNameLines,
           onCheckedChange = { appearancePreferences.unlimitedNameLines.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Path",
+          label = "路径",
           checked = showFolderPath,
           onCheckedChange = { browserPreferences.showFolderPath.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Total Videos",
+          label = "视频总数",
           checked = showTotalVideosChip,
           onCheckedChange = { browserPreferences.showTotalVideosChip.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Total Duration",
+          label = "总时长",
           checked = showTotalDurationChip,
           onCheckedChange = { browserPreferences.showTotalDurationChip.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Folder Size",
+          label = "文件夹大小",
           checked = showTotalSizeChip,
           onCheckedChange = { browserPreferences.showTotalSizeChip.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Date",
+          label = "日期",
           checked = showDateChip,
           onCheckedChange = { browserPreferences.showDateChip.set(it) },
         )
@@ -204,7 +204,7 @@ fun FolderSortDialog(
       if (mediaLayoutMode == MediaLayoutMode.GRID) {
         add(
           VisibilityToggle(
-            label = "Manual Grid Columns",
+            label = "手动网格列数",
             checked = manualGridColumnsEnabled,
             onCheckedChange = { enabled ->
               if (enabled) {
@@ -222,14 +222,14 @@ fun FolderSortDialog(
         )
         add(
           VisibilityToggle(
-            label = "Folder Thumbnails",
+            label = "文件夹缩略图",
             checked = showFolderThumbnails,
             onCheckedChange = { browserPreferences.showFolderThumbnails.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Center Titles",
+            label = "标题居中",
             checked = centerGridTitles,
             onCheckedChange = { browserPreferences.centerGridTitles.set(it) },
           )
@@ -296,7 +296,7 @@ fun VideoSortDialog(
 
   val folderGridColumnSelector = if (mediaLayoutMode == MediaLayoutMode.GRID && manualGridColumnsEnabled) {
     GridColumnSelector(
-      label = "Folder Grid Columns (${if (isLandscape) "Landscape" else "Portrait"})",
+      label = "文件夹网格列数 (${if (isLandscape) "横屏" else "竖屏"})",
       currentValue = folderGridColumns.coerceIn(1, maxColumns),
       onValueChange = {
         if (isLandscape) browserPreferences.folderGridColumnsLandscape.set(it)
@@ -309,7 +309,7 @@ fun VideoSortDialog(
 
   val videoGridColumnSelector = if (mediaLayoutMode == MediaLayoutMode.GRID && manualGridColumnsEnabled) {
     GridColumnSelector(
-      label = "Video Grid Columns (${if (isLandscape) "Landscape" else "Portrait"})",
+      label = "视频网格列数 (${if (isLandscape) "横屏" else "竖屏"})",
       currentValue = videoGridColumns.coerceIn(1, maxColumns),
       onValueChange = {
         if (isLandscape) browserPreferences.videoGridColumnsLandscape.set(it)
@@ -323,7 +323,7 @@ fun VideoSortDialog(
   SortDialog(
     isOpen = isOpen,
     onDismiss = onDismiss,
-    title = "Sort & View Options",
+    title = "排序与视图选项",
     sortType = sortType.displayName,
     onSortTypeChange = { typeName ->
       VideoSortType.entries.find { it.displayName == typeName }?.let(onSortTypeChange)
@@ -348,30 +348,30 @@ fun VideoSortDialog(
       ),
     getLabelForType = { type, _ ->
       when (type) {
-        VideoSortType.Title.displayName -> Pair("A-Z", "Z-A")
-        VideoSortType.Duration.displayName -> Pair("Shortest", "Longest")
-        VideoSortType.Date.displayName -> Pair("Oldest", "Newest")
-        VideoSortType.Size.displayName -> Pair("Smallest", "Biggest")
-        else -> Pair("Asc", "Desc")
+        VideoSortType.Title.displayName -> Pair("升序", "降序")
+        VideoSortType.Duration.displayName -> Pair("最短", "最长")
+        VideoSortType.Date.displayName -> Pair("最早", "最新")
+        VideoSortType.Size.displayName -> Pair("最小", "最大")
+        else -> Pair("升序", "降序")
       }
     },
     viewModeSelector = MultiViewModeSelector(
-      label = "View Mode",
+      label = "视图模式",
       options = listOf(
         ViewModeOption(
-          label = "Folder",
+          label = "文件夹",
           icon = Icons.Filled.ViewModule,
           isSelected = folderViewMode == FolderViewMode.AlbumView,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.AlbumView) },
         ),
         ViewModeOption(
-          label = "Tree",
+          label = "树状",
           icon = Icons.Filled.AccountTree,
           isSelected = folderViewMode == FolderViewMode.FileManager,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.FileManager) },
         ),
         ViewModeOption(
-          label = "Library",
+          label = "媒体库",
           icon = Icons.Filled.VideoLibrary,
           isSelected = folderViewMode == FolderViewMode.MediaLibrary,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.MediaLibrary) },
@@ -379,9 +379,9 @@ fun VideoSortDialog(
       ),
     ),
     layoutModeSelector = ViewModeSelector(
-      label = "Layout",
-      firstOptionLabel = "List",
-      secondOptionLabel = "Grid",
+      label = "布局",
+      firstOptionLabel = "列表",
+      secondOptionLabel = "网格",
       firstOptionIcon = Icons.Filled.ViewList,
       secondOptionIcon = Icons.Filled.GridView,
       isFirstOptionSelected = mediaLayoutMode == MediaLayoutMode.LIST,
@@ -395,70 +395,70 @@ fun VideoSortDialog(
       buildList {
         add(
           VisibilityToggle(
-            label = "Thumbnails",
+            label = "缩略图",
             checked = showThumbnails,
             onCheckedChange = { browserPreferences.showVideoThumbnails.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Extension",
+            label = "扩展名",
             checked = showExtensionField,
             onCheckedChange = { browserPreferences.showExtensionField.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Duration",
+            label = "时长",
             checked = showDurationField,
             onCheckedChange = { browserPreferences.showDurationField.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Subtitle Indicator",
+            label = "字幕指示器",
             checked = showSubtitleIndicator,
             onCheckedChange = { browserPreferences.showSubtitleIndicator.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Full Name",
+            label = "完整名称",
             checked = unlimitedNameLines,
             onCheckedChange = { appearancePreferences.unlimitedNameLines.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Size",
+            label = "大小",
             checked = showSizeChip,
             onCheckedChange = { browserPreferences.showSizeChip.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Resolution",
+            label = "分辨率",
             checked = showResolutionChip,
             onCheckedChange = { browserPreferences.showResolutionChip.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Framerate",
+            label = "帧率",
             checked = showFramerateInResolution,
             onCheckedChange = { browserPreferences.showFramerateInResolution.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Date",
+            label = "日期",
             checked = showDateChip,
             onCheckedChange = { browserPreferences.showDateChip.set(it) },
           )
         )
         add(
           VisibilityToggle(
-            label = "Progress Bar",
+            label = "进度条",
             checked = showProgressBar,
             onCheckedChange = { browserPreferences.showProgressBar.set(it) },
           )
@@ -466,7 +466,7 @@ fun VideoSortDialog(
         if (mediaLayoutMode == MediaLayoutMode.GRID) {
           add(
             VisibilityToggle(
-              label = "Manual Grid Columns",
+              label = "手动网格列数",
               checked = manualGridColumnsEnabled,
               onCheckedChange = { enabled ->
                 if (enabled) {
@@ -484,7 +484,7 @@ fun VideoSortDialog(
           )
           add(
             VisibilityToggle(
-              label = "Center Titles",
+              label = "标题居中",
               checked = centerGridTitles,
               onCheckedChange = { browserPreferences.centerGridTitles.set(it) },
             )
@@ -545,7 +545,7 @@ fun FileSystemSortDialog(
 
   val folderGridColumnSelector = if (mediaLayoutMode == MediaLayoutMode.GRID && manualGridColumnsEnabled) {
     GridColumnSelector(
-      label = "Folder Grid Columns (${if (isLandscape) "Landscape" else "Portrait"})",
+      label = "文件夹网格列数 (${if (isLandscape) "横屏" else "竖屏"})",
       currentValue = folderGridColumns.coerceIn(1, maxColumns),
       onValueChange = {
         if (isLandscape) browserPreferences.folderGridColumnsLandscape.set(it)
@@ -558,7 +558,7 @@ fun FileSystemSortDialog(
 
   val videoGridColumnSelector = if (mediaLayoutMode == MediaLayoutMode.GRID && manualGridColumnsEnabled) {
     GridColumnSelector(
-      label = "Video Grid Columns (${if (isLandscape) "Landscape" else "Portrait"})",
+      label = "视频网格列数 (${if (isLandscape) "横屏" else "竖屏"})",
       currentValue = videoGridColumns.coerceIn(1, maxColumns),
       onValueChange = {
         if (isLandscape) browserPreferences.videoGridColumnsLandscape.set(it)
@@ -572,7 +572,7 @@ fun FileSystemSortDialog(
   SortDialog(
     isOpen = isOpen,
     onDismiss = onDismiss,
-    title = "Sort & View Options",
+    title = "排序与视图选项",
     sortType = folderSortType.displayName,
     onSortTypeChange = { typeName ->
       FolderSortType.entries.find { it.displayName == typeName }?.let {
@@ -598,30 +598,30 @@ fun FileSystemSortDialog(
     ),
     getLabelForType = { type, _ ->
       when (type) {
-        FolderSortType.Title.displayName -> Pair("A-Z", "Z-A")
-        FolderSortType.Date.displayName -> Pair("Oldest", "Newest")
-        FolderSortType.Size.displayName -> Pair("Smallest", "Largest")
-        else -> Pair("Asc", "Desc")
+        FolderSortType.Title.displayName -> Pair("升序", "降序")
+        FolderSortType.Date.displayName -> Pair("最早", "最新")
+        FolderSortType.Size.displayName -> Pair("最小", "最大")
+        else -> Pair("升序", "降序")
       }
     },
     showSortOptions = true,
     viewModeSelector = MultiViewModeSelector(
-      label = "View Mode",
+      label = "视图模式",
       options = listOf(
         ViewModeOption(
-          label = "Folder",
+          label = "文件夹",
           icon = Icons.Filled.ViewModule,
           isSelected = folderViewMode == FolderViewMode.AlbumView,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.AlbumView) }
         ),
         ViewModeOption(
-          label = "Tree",
+          label = "树状",
           icon = Icons.Filled.AccountTree,
           isSelected = folderViewMode == FolderViewMode.FileManager,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.FileManager) }
         ),
         ViewModeOption(
-          label = "Library",
+          label = "媒体库",
           icon = Icons.Filled.VideoLibrary,
           isSelected = folderViewMode == FolderViewMode.MediaLibrary,
           onClick = { browserPreferences.folderViewMode.set(FolderViewMode.MediaLibrary) }
@@ -629,9 +629,9 @@ fun FileSystemSortDialog(
       )
     ),
     layoutModeSelector = ViewModeSelector(
-      label = "Layout",
-      firstOptionLabel = "List",
-      secondOptionLabel = "Grid",
+      label = "布局",
+      firstOptionLabel = "列表",
+      secondOptionLabel = "网格",
       firstOptionIcon = Icons.Filled.ViewList,
       secondOptionIcon = Icons.Filled.GridView,
       isFirstOptionSelected = mediaLayoutMode == MediaLayoutMode.LIST,
@@ -648,84 +648,84 @@ fun FileSystemSortDialog(
     visibilityToggles = buildList {
       add(
         VisibilityToggle(
-          label = "Video Thumbnails",
+          label = "视频缩略图",
           checked = showVideoThumbnails,
           onCheckedChange = { browserPreferences.showVideoThumbnails.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Full Name",
+          label = "完整名称",
           checked = unlimitedNameLines,
           onCheckedChange = { appearancePreferences.unlimitedNameLines.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Extension",
+          label = "扩展名",
           checked = showExtensionField,
           onCheckedChange = { browserPreferences.showExtensionField.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Duration",
+          label = "时长",
           checked = showDurationField,
           onCheckedChange = { browserPreferences.showDurationField.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Path",
+          label = "路径",
           checked = showFolderPath,
           onCheckedChange = { browserPreferences.showFolderPath.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Total Videos",
+          label = "视频总数",
           checked = showTotalVideosChip,
           onCheckedChange = { browserPreferences.showTotalVideosChip.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Folder Size",
+          label = "文件夹大小",
           checked = showTotalSizeChip,
           onCheckedChange = { browserPreferences.showTotalSizeChip.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Size",
+          label = "大小",
           checked = showSizeChip,
           onCheckedChange = { browserPreferences.showSizeChip.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Resolution",
+          label = "分辨率",
           checked = showResolutionChip,
           onCheckedChange = { browserPreferences.showResolutionChip.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Framerate",
+          label = "帧率",
           checked = showFramerateInResolution,
           onCheckedChange = { browserPreferences.showFramerateInResolution.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Subtitle",
+          label = "字幕",
           checked = showSubtitleIndicator,
           onCheckedChange = { browserPreferences.showSubtitleIndicator.set(it) },
         )
       )
       add(
         VisibilityToggle(
-          label = "Progress Bar",
+          label = "进度条",
           checked = showProgressBar,
           onCheckedChange = { browserPreferences.showProgressBar.set(it) },
         )
@@ -733,7 +733,7 @@ fun FileSystemSortDialog(
       if (mediaLayoutMode == MediaLayoutMode.GRID) {
         add(
           VisibilityToggle(
-            label = "Manual Grid Columns",
+            label = "手动网格列数",
             checked = manualGridColumnsEnabled,
             onCheckedChange = { enabled ->
               if (enabled) {

@@ -125,7 +125,7 @@ data class MpvHelpScreen(
                 HelpEntryKind.JS_API -> entry.signature.substringBefore("(") + "()"
             }
             SafeClipboard.copyPlainText(context, "mpv_help", text, showToast = false)
-            Toast.makeText(context, "Copied: $text", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "已复制: $text", Toast.LENGTH_SHORT).show()
         }
 
         LaunchedEffect(Unit) {

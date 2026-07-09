@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.dialogs
+﻿package app.gyrolet.mpvrx.ui.browser.dialogs
 
 import android.app.Application
 import android.content.ClipData
@@ -161,7 +161,7 @@ fun VideoCompressorOverlay(
       state.originalName
         ?.substringBeforeLast(".")
         ?.let { "${it}_compressed.mp4" }
-        ?: "CompressedVideo.mp4"
+        ?: "压缩essedVideo.mp4"
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
       viewModel.saveToGallery(context)
@@ -213,7 +213,7 @@ fun VideoCompressorOverlay(
             slideInHorizontally { it / 6 } + fadeIn() togetherWith slideOutHorizontally { -it / 6 } + fadeOut()
           }
         },
-        label = "compressor-overlay-stage",
+        label = "压缩essor-overlay-stage",
       ) { target ->
         when (target) {
           CompressorScreenState.CONFIG -> {
@@ -255,7 +255,7 @@ fun VideoCompressorOverlay(
 
           CompressorScreenState.ERROR -> {
             CompressorIssueSurface(
-              title = "Compression failed",
+              title = "压缩ession failed",
               message = state.error ?: "Unknown error",
               actionLabel = "Try again",
               onClose = ::closeOverlay,
@@ -287,7 +287,7 @@ fun VideoCompressorOverlay(
       onTogglePreserveMetadata = viewModel::togglePreserveMetadata,
       onCopy = {
         scope.launch {
-          SafeClipboard.copyPlainText(context, "compressor-info", infoText)
+          SafeClipboard.copyPlainText(context, "压缩essor-info", infoText)
         }
       },
       onShare = {
@@ -315,7 +315,7 @@ private fun shareCompressedVideo(
   runCatching {
     val file = File(uri.path ?: return)
     val contentUri = FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
-    val title = originalName?.substringBeforeLast(".")?.let { "${it}_compressed.mp4" } ?: "compressed_video.mp4"
+    val title = originalName?.substringBeforeLast(".")?.let { "${it}_compressed.mp4" } ?: "压缩essed_video.mp4"
     val intent =
       Intent(Intent.ACTION_SEND).apply {
         type = "video/mp4"
@@ -348,7 +348,7 @@ private fun CompressorConfigSurface(
 ) {
   val pagerState = rememberPagerState(pageCount = { 3 })
   val scope = rememberCoroutineScope()
-  val tabs = listOf("Presets", "Video", "Audio")
+  val tabs = listOf("预设", "视频", "音频")
   val originalMb = state.originalSize / (1024f * 1024f)
   val actualEstimate = maxOf(state.targetSizeMb, state.minimumSizeMb)
   val isLarger = originalMb > 0f && actualEstimate > (originalMb + 0.01f)
@@ -363,7 +363,7 @@ private fun CompressorConfigSurface(
         verticalArrangement = Arrangement.spacedBy(12.dp),
       ) {
         androidx.compose.material3.CircularProgressIndicator()
-        Text("Loading video info")
+        Text("加载视频信息中")
       }
     }
     return
@@ -375,19 +375,19 @@ private fun CompressorConfigSurface(
         modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
         title = {
           Text(
-            text = "Compressor",
+            text = "压缩器",
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
           )
         },
         navigationIcon = {
           IconButton(onClick = onClose) {
-            Icon(Icons.Default.Close, contentDescription = "Close")
+            Icon(Icons.Default.Close, contentDescription = "关闭")
           }
         },
         actions = {
           IconButton(onClick = onShowInfo) {
-            Icon(Icons.Filled.Info, contentDescription = "Info")
+            Icon(Icons.Filled.Info, contentDescription = "信息")
           }
         },
       )
@@ -530,10 +530,10 @@ private fun CompressorDestinationCard(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
       ) {
-        Text("Save to", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+        Text("保存至", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
         if (state.isBatch) {
           Text(
-            "${state.queueSize} videos selected",
+            "${state.queueSize} 个视频已选择",
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.primary,
           )
@@ -547,7 +547,7 @@ private fun CompressorDestinationCard(
         FilterChip(
           selected = state.saveMode == VideoCompressorSaveMode.CURRENT_FOLDER,
           onClick = { onSetSaveMode(VideoCompressorSaveMode.CURRENT_FOLDER) },
-          label = { Text("Current folder") },
+          label = { Text("当前文件夹") },
         )
         FilterChip(
           selected = state.saveMode == VideoCompressorSaveMode.MOVIES_COMPRESSOR,
@@ -557,7 +557,7 @@ private fun CompressorDestinationCard(
       }
 
       Text(
-        text = state.destinationDisplayPath.ifBlank { "Destination will be resolved when compression starts." },
+        text = state.destinationDisplayPath.ifBlank { "压缩开始时将确定目标位置。" },
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
@@ -597,7 +597,7 @@ private fun CompressorBottomBar(
             .height(56.dp),
         shape = AppShapeScale.largeIncreased,
       ) {
-        Text(if (isBatch) "Start Batch Compression" else "Start Compression")
+        Text(if (isBatch) "开始批量压缩" else "开始压缩")
       }
     }
   }
@@ -617,7 +617,7 @@ private fun CompressorInfoCard(state: VideoCompressorUiState) {
     ) {
       Column(modifier = Modifier.weight(1f)) {
         Text(
-          text = if (state.isBatch) "Source preview" else "Original",
+          text = if (state.isBatch) "源文件预览" else "原始",
           style = MaterialTheme.typography.labelMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -656,7 +656,7 @@ private fun CompressorInfoCard(state: VideoCompressorUiState) {
         horizontalAlignment = Alignment.End,
       ) {
         Text(
-          text = "Estimated",
+          text = "预估",
           style = MaterialTheme.typography.labelMedium,
           color = MaterialTheme.colorScheme.primary,
         )
@@ -722,13 +722,13 @@ private fun CompressorPresetsTab(
         .padding(horizontal = 20.dp, vertical = 20.dp),
     verticalArrangement = Arrangement.spacedBy(20.dp),
   ) {
-    Text("Change Video Quality", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+    Text("更改视频质量", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
 
     val presets =
       listOf(
-        Triple(VideoCompressionPreset.HIGH, "High", "Optimized bitrate only"),
-        Triple(VideoCompressionPreset.MEDIUM, "Medium", "1080p - 30fps"),
-        Triple(VideoCompressionPreset.LOW, "Low", "720p - 30fps"),
+        Triple(VideoCompressionPreset.HIGH, "高", "仅优化比特率"),
+        Triple(VideoCompressionPreset.MEDIUM, "中", "1080p - 30fps"),
+        Triple(VideoCompressionPreset.LOW, "低", "720p - 30fps"),
       )
 
     presets.forEach { (preset, title, subtitle) ->
@@ -783,7 +783,7 @@ private fun CompressorPresetsTab(
       ).filter { it.first < (state.originalSize.toFloat() / (1024f * 1024f)) }
 
     if (sizePresets.isNotEmpty()) {
-      Text("Target Size Presets", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+      Text("目标大小预设", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
       FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -833,9 +833,9 @@ private fun CompressorVideoTab(
         .padding(horizontal = 20.dp, vertical = 20.dp),
     verticalArrangement = Arrangement.spacedBy(18.dp),
   ) {
-    Text("Advanced Options", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+    Text("高级选项", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
 
-    Text("Target Size", style = MaterialTheme.typography.labelLarge)
+    Text("目标大小", style = MaterialTheme.typography.labelLarge)
     Text(
       text = String.format(Locale.US, "%.1f MB", sliderValue),
       style = MaterialTheme.typography.labelMedium,
@@ -850,7 +850,7 @@ private fun CompressorVideoTab(
       valueRange = 0.1f..maxOf(10f, state.targetSizeMb, (state.originalSize.toFloat() / (1024f * 1024f))),
     )
 
-    Text("Encoding", style = MaterialTheme.typography.labelLarge)
+    Text("编码", style = MaterialTheme.typography.labelLarge)
     Row(
       modifier = Modifier.horizontalScroll(rememberScrollState()),
       horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -876,7 +876,7 @@ private fun CompressorVideoTab(
       )
     }
 
-    Text("Resolution", style = MaterialTheme.typography.labelLarge)
+    Text("分辨率", style = MaterialTheme.typography.labelLarge)
     val originalShortSide = minOf(state.originalWidth, state.originalHeight)
     val currentShortSide =
       if (state.originalHeight > state.originalWidth && state.targetResolutionHeight > 0 && state.originalHeight > 0) {
@@ -892,7 +892,7 @@ private fun CompressorVideoTab(
     ) {
       val options =
         buildList {
-          add(originalShortSide to "Original")
+          add(originalShortSide to "原始")
           listOf(2160, 1440, 1080, 720, 540, 480, (originalShortSide * 3) / 4, originalShortSide / 2, originalShortSide / 4)
             .filter { it > 0 && it < originalShortSide }
             .distinct()
@@ -900,14 +900,14 @@ private fun CompressorVideoTab(
         }
       options.forEach { (value, label) ->
         FilterChip(
-          selected = currentShortSide == value || (label == "Original" && state.targetResolutionHeight == state.originalHeight),
+          selected = currentShortSide == value || (label == "原始" && state.targetResolutionHeight == state.originalHeight),
           onClick = { onSetResolution(value) },
           label = { Text(label) },
         )
       }
     }
 
-    Text("Framerate", style = MaterialTheme.typography.labelLarge)
+    Text("帧率", style = MaterialTheme.typography.labelLarge)
     Row(
       modifier = Modifier.horizontalScroll(rememberScrollState()),
       horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -951,20 +951,20 @@ private fun CompressorAudioTab(
         .padding(horizontal = 20.dp, vertical = 20.dp),
     verticalArrangement = Arrangement.spacedBy(18.dp),
   ) {
-    Text("Audio Options", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+    Text("音频选项", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
 
     Row(
       modifier = Modifier.fillMaxWidth(),
       verticalAlignment = Alignment.CenterVertically,
       horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-      Text("Remove audio", style = MaterialTheme.typography.bodyLarge)
+      Text("移除音频", style = MaterialTheme.typography.bodyLarge)
       Switch(checked = state.removeAudio, onCheckedChange = { onToggleRemoveAudio() })
     }
 
     AnimatedVisibility(visible = !state.removeAudio) {
       Column(verticalArrangement = Arrangement.spacedBy(18.dp)) {
-        Text("Audio Bitrate", style = MaterialTheme.typography.labelLarge)
+        Text("音频比特率", style = MaterialTheme.typography.labelLarge)
         Row(
           modifier = Modifier.horizontalScroll(rememberScrollState()),
           horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -979,7 +979,7 @@ private fun CompressorAudioTab(
                 label = {
                   Text(
                     if (bitrate == 0) {
-                      "Original - ${maxOf(state.originalAudioBitrate, 0) / 1000}k"
+                      "原始 - ${maxOf(state.originalAudioBitrate, 0) / 1000}k"
                     } else {
                       "${bitrate / 1000}k"
                     },
@@ -1056,7 +1056,7 @@ private fun CompressorProgressSurface(
           modifier = Modifier.padding(20.dp),
           verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-          Text("COMPRESSING VIDEO", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+          Text("压缩ESSING VIDEO", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
           Text(
             text =
               if (state.isBatch) {
@@ -1116,7 +1116,7 @@ private fun CompressorProgressSurface(
           ),
         shape = AppShapeScale.largeIncreased,
       ) {
-        Text("Cancel")
+        Text("取消")
       }
     }
   }
@@ -1140,10 +1140,10 @@ private fun CompressorResultSurface(
     topBar = {
       CenterAlignedTopAppBar(
         modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
-        title = { Text("Compressor", fontWeight = FontWeight.Bold) },
+        title = { Text("压缩器", fontWeight = FontWeight.Bold) },
         navigationIcon = {
           IconButton(onClick = onClose) {
-            Icon(Icons.Default.Close, contentDescription = "Close")
+            Icon(Icons.Default.Close, contentDescription = "关闭")
           }
         },
       )
@@ -1176,7 +1176,7 @@ private fun CompressorResultSurface(
           )
         }
         Text(
-          if (state.isBatch) "Batch Compression Complete!" else "Compression Complete!",
+          if (state.isBatch) "批量压缩完成！" else "压缩ession Complete!",
           style = MaterialTheme.typography.headlineMedium,
           fontWeight = FontWeight.Bold,
         )
@@ -1205,9 +1205,9 @@ private fun CompressorResultSurface(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
           ) {
-            Text("Saved to", fontWeight = FontWeight.SemiBold)
+            Text("保存至", fontWeight = FontWeight.SemiBold)
             Text(
-              state.destinationDisplayPath.ifBlank { "Unknown destination" },
+              state.destinationDisplayPath.ifBlank { "未知目标位置" },
               style = MaterialTheme.typography.bodyMedium,
               color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -1223,7 +1223,7 @@ private fun CompressorResultSurface(
               modifier = Modifier.padding(16.dp),
               verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-              Text("Warnings", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onErrorContainer)
+              Text("警告", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onErrorContainer)
               state.warnings.forEach {
                 Text(it, color = MaterialTheme.colorScheme.onErrorContainer)
               }
@@ -1243,20 +1243,20 @@ private fun CompressorResultSurface(
             ) {
               Icon(Icons.Default.Share, contentDescription = null)
               Spacer(modifier = Modifier.width(8.dp))
-              Text("Share")
+              Text("分享")
             }
             FilledTonalButton(
               onClick = onSave,
               modifier = Modifier.weight(1f),
               shape = AppShapeScale.largeIncreased,
             ) {
-              Text("Save copy")
+              Text("保存副本")
             }
           }
         }
 
         TextButton(onClick = onClose) {
-          Text("Back to list")
+          Text("返回列表")
         }
       }
     }
@@ -1276,10 +1276,10 @@ private fun CompressorIssueSurface(
     topBar = {
       CenterAlignedTopAppBar(
         modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
-        title = { Text("Compressor", fontWeight = FontWeight.Bold) },
+        title = { Text("压缩器", fontWeight = FontWeight.Bold) },
         navigationIcon = {
           IconButton(onClick = onClose) {
-            Icon(Icons.Default.Close, contentDescription = "Close")
+            Icon(Icons.Default.Close, contentDescription = "关闭")
           }
         },
       )
@@ -1323,7 +1323,7 @@ private fun CompressorIssueSurface(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
           ) {
             OutlinedButton(onClick = onClose, modifier = Modifier.weight(1f)) {
-              Text("Close")
+              Text("关闭")
             }
             Button(onClick = onAction, modifier = Modifier.weight(1f)) {
               Text(actionLabel)
@@ -1349,8 +1349,8 @@ private fun CompressorInfoDialog(
     onDismissRequest = onDismiss,
     title = {
       Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text("Device and App Info", style = MaterialTheme.typography.titleLarge)
-        Text("Compressor v${state.appInfoVersion}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("设备与应用信息", style = MaterialTheme.typography.titleLarge)
+        Text("压缩essor v${state.appInfoVersion}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
       }
     },
     text = {
@@ -1366,7 +1366,7 @@ private fun CompressorInfoDialog(
           verticalAlignment = Alignment.CenterVertically,
           horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-          Text("Show bitrate")
+          Text("显示比特率")
           Switch(checked = state.showBitrate, onCheckedChange = { onToggleShowBitrate() })
         }
         if (state.showBitrate) {
@@ -1375,7 +1375,7 @@ private fun CompressorInfoDialog(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
           ) {
-            Text("Use Mbps")
+            Text("使用 Mbps")
             Switch(checked = state.useMbps, onCheckedChange = { onToggleBitrateUnit() })
           }
         }
@@ -1384,11 +1384,11 @@ private fun CompressorInfoDialog(
           verticalAlignment = Alignment.CenterVertically,
           horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-          Text("Preserve metadata")
+          Text("保留元数据")
           Switch(checked = state.preserveMetadata, onCheckedChange = { onTogglePreserveMetadata() })
         }
         HorizontalDivider()
-        Text("Supported Codecs", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+        Text("支持的编解码器", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
         state.supportedCodecs.forEach {
           Text("- ${it.substringAfter("/")}", style = MaterialTheme.typography.bodySmall)
         }
@@ -1396,13 +1396,13 @@ private fun CompressorInfoDialog(
     },
     confirmButton = {
       Row {
-        TextButton(onClick = onShare) { Text("Share") }
-        TextButton(onClick = onCopy) { Text("Copy") }
+        TextButton(onClick = onShare) { Text("分享") }
+        TextButton(onClick = onCopy) { Text("复制") }
       }
     },
     dismissButton = {
       TextButton(onClick = onDismiss) {
-        Text("Close")
+        Text("关闭")
       }
     },
   )

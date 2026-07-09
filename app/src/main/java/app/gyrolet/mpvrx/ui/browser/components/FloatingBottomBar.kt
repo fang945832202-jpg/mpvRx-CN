@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.components
+﻿package app.gyrolet.mpvrx.ui.browser.components
 
 import app.gyrolet.mpvrx.ui.icons.Icon
 import app.gyrolet.mpvrx.ui.icons.Icons
@@ -141,12 +141,12 @@ fun BrowserBottomBar(
           horizontalArrangement = Arrangement.spacedBy(layoutParams.spacing),
           verticalAlignment = Alignment.CenterVertically
         ) {
-          BrowserBottomBarButton(showCopy, onCopyClick, Icons.Filled.ContentCopy, "Copy", layoutParams.buttonSize, layoutParams.iconSize)
-          BrowserBottomBarButton(showMove, onMoveClick, Icons.Filled.DriveFileMove, "Move", layoutParams.buttonSize, layoutParams.iconSize)
-          BrowserBottomBarButton(showDownscale, onDownscaleClick, Icons.Default.FitScreen, "Compressor", layoutParams.buttonSize, layoutParams.iconSize)
-          BrowserBottomBarButton(showRename, onRenameClick, Icons.Filled.DriveFileRenameOutline, "Rename", layoutParams.buttonSize, layoutParams.iconSize)
-          BrowserBottomBarButton(showAddToPlaylist, onAddToPlaylistClick, Icons.Filled.PlaylistAdd, "Add to Playlist", layoutParams.buttonSize, layoutParams.iconSize)
-          BrowserBottomBarButton(showDelete, onDeleteClick, Icons.Filled.Delete, "Delete", layoutParams.buttonSize, layoutParams.iconSize, tint = MaterialTheme.colorScheme.error)
+          BrowserBottomBarButton(showCopy, onCopyClick, Icons.Filled.ContentCopy, "复制", layoutParams.buttonSize, layoutParams.iconSize)
+          BrowserBottomBarButton(showMove, onMoveClick, Icons.Filled.DriveFileMove, "移动", layoutParams.buttonSize, layoutParams.iconSize)
+          BrowserBottomBarButton(showDownscale, onDownscaleClick, Icons.Default.FitScreen, "压缩器", layoutParams.buttonSize, layoutParams.iconSize)
+          BrowserBottomBarButton(showRename, onRenameClick, Icons.Filled.DriveFileRenameOutline, "重命名", layoutParams.buttonSize, layoutParams.iconSize)
+          BrowserBottomBarButton(showAddToPlaylist, onAddToPlaylistClick, Icons.Filled.PlaylistAdd, "添加到播放列表", layoutParams.buttonSize, layoutParams.iconSize)
+          BrowserBottomBarButton(showDelete, onDeleteClick, Icons.Filled.Delete, "删除", layoutParams.buttonSize, layoutParams.iconSize, tint = MaterialTheme.colorScheme.error)
         }
       }
     }

@@ -580,7 +580,7 @@ object PlayerPreferencesScreen : Screen {
           }
 
           // ── Screenshots ─────────────────────────────────────────────────
-          item { PreferenceSectionHeader(title = "Screenshots") }
+          item { PreferenceSectionHeader(title = "截图") }
           item {
             PreferenceCard {
               val screenshotFormat by preferences.screenshotFormat.collectAsState()

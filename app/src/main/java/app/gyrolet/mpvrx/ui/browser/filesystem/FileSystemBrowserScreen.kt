@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.filesystem
+﻿package app.gyrolet.mpvrx.ui.browser.filesystem
 
 import app.gyrolet.mpvrx.ui.icons.Icon
 import app.gyrolet.mpvrx.ui.icons.Icons
@@ -649,7 +649,7 @@ fun FileSystemBrowserScreen(path: String? = null) {
                 filePicker.launch(arrayOf("video/*"))
               },
               icon = { Icon(Icons.Filled.FileOpen, contentDescription = null) },
-              text = { Text(text = "Open File") },
+              text = { Text(text = "打开文件") },
             )
 
             FloatingActionButtonMenuItem(
@@ -664,7 +664,7 @@ fun FileSystemBrowserScreen(path: String? = null) {
                 }
               },
               icon = { Icon(Icons.Filled.History, contentDescription = null) },
-              text = { Text(text = "Recently Played") },
+              text = { Text(text = "最近播放") },
             )
 
             FloatingActionButtonMenuItem(
@@ -673,7 +673,7 @@ fun FileSystemBrowserScreen(path: String? = null) {
                 showLinkDialog.value = true
               },
               icon = { Icon(Icons.Filled.Link, contentDescription = null) },
-              text = { Text(text = "Open Link") },
+              text = { Text(text = "打开链接") },
             )
           }
         }
@@ -876,7 +876,7 @@ fun FileSystemBrowserScreen(path: String? = null) {
               selectionManager.renameSelected(newName)
             },
             currentName = selectedItem.name,
-            itemType = "folder",
+            itemType = "文件夹",
           )
         }
 

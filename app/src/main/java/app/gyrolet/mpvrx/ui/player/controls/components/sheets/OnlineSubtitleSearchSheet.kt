@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.player.controls.components.sheets
+﻿package app.gyrolet.mpvrx.ui.player.controls.components.sheets
 
 import android.widget.Toast
 import app.gyrolet.mpvrx.preferences.AiPreferences
@@ -140,7 +140,7 @@ fun OnlineSubtitleSearchSheet(
       fun formatWithAi() {
         val input = if (searchQuery.isNotBlank()) searchQuery else mediaInfo.title
         if (input.isBlank()) {
-          Toast.makeText(context, "Search query is empty", Toast.LENGTH_SHORT).show()
+          Toast.makeText(context, "搜索内容为空", Toast.LENGTH_SHORT).show()
           return
         }
         scope.launch {
@@ -152,7 +152,7 @@ fun OnlineSubtitleSearchSheet(
               keyboardController?.hide()
             }
             .onFailure { e ->
-              Toast.makeText(context, "AI format failed: ${e.message}", Toast.LENGTH_SHORT).show()
+              Toast.makeText(context, "AI 格式化失败: ${e.message}", Toast.LENGTH_SHORT).show()
             }
           isAiFormatting = false
         }

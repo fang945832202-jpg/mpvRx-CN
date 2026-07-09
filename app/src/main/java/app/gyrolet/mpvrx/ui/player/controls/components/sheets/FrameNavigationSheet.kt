@@ -189,7 +189,7 @@ fun FrameNavigationSheet(
                   Toast.LENGTH_SHORT,
                 ).show()
             }.onFailure { error ->
-              Toast.makeText(context, "Failed to save snapshot: ${error.message}", Toast.LENGTH_LONG).show()
+              Toast.makeText(context, "保存截图失败: ${error.message}", Toast.LENGTH_LONG).show()
             }
           } finally {
             isSnapshotLoading = false

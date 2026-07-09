@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.medialibrary
+﻿package app.gyrolet.mpvrx.ui.browser.medialibrary
 
 import android.content.Intent
 import androidx.activity.compose.BackHandler
@@ -482,7 +482,7 @@ fun MediaLibraryContent() {
         },
         itemCount = selectionManager.selectedCount,
         isOpen = deleteDialogOpen.value,
-        itemType = "video"
+        itemType = "视频"
       )
     }
 
@@ -497,7 +497,7 @@ fun MediaLibraryContent() {
           },
           currentName = video.displayName,
           isOpen = renameDialogOpen.value,
-          itemType = "video"
+          itemType = "视频"
         )
       }
     }

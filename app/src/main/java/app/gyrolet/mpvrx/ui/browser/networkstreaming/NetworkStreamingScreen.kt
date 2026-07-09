@@ -1,4 +1,4 @@
-package app.gyrolet.mpvrx.ui.browser.networkstreaming
+﻿package app.gyrolet.mpvrx.ui.browser.networkstreaming
 
 import app.gyrolet.mpvrx.ui.icons.Icon
 import app.gyrolet.mpvrx.ui.icons.Icons
@@ -112,7 +112,7 @@ object NetworkStreamingScreen : Screen {
     Scaffold(
         topBar = {
           BrowserTopBar(
-            title = "Network",
+            title = "网络",
             isInSelectionMode = false,
             selectedCount = 0,
             totalCount = 0,
@@ -141,7 +141,7 @@ object NetworkStreamingScreen : Screen {
           ExtendedFloatingActionButton(
             onClick = { showAddSheet = true },
             icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text("Add Connection") },
+            text = { Text("添加连接") },
             modifier = Modifier.padding(bottom = navigationBarHeight)
           )
         }
@@ -172,7 +172,7 @@ object NetworkStreamingScreen : Screen {
           item {
             Spacer(modifier = Modifier.height(24.dp))
             Text(
-              text = "Local Network",
+              text = "本地网络",
               style = MaterialTheme.typography.titleLarge,
               fontWeight = FontWeight.Bold,
               color = MaterialTheme.colorScheme.primary,
@@ -203,14 +203,14 @@ object NetworkStreamingScreen : Screen {
                   )
                   Spacer(modifier = Modifier.height(16.dp))
                   Text(
-                    text = "No network connections",
+                    text = "无网络连接",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface, // a
                   )
                   Spacer(modifier = Modifier.height(8.dp))
                   Text(
-                    text = "Add SMB, FTP, or WebDAV connections to browse network files",
+                    text = "添加 SMB、FTP 或 WebDAV 连接以浏览网络文件",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
@@ -312,7 +312,7 @@ private fun StreamLinkSection(
     modifier = Modifier.fillMaxWidth(),
   ) {
     Text(
-      text = "Stream Link",
+      text = "流媒体链接",
       style = MaterialTheme.typography.titleLarge,
       fontWeight = FontWeight.Bold,
       color = MaterialTheme.colorScheme.primary,
@@ -337,7 +337,7 @@ private fun StreamLinkSection(
           modifier = Modifier.weight(1f),
           placeholder = {
             Text(
-              text = "Enter stream URL…",
+              text = "输入流媒体 URL…",
               color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
             )
           },
@@ -356,7 +356,7 @@ private fun StreamLinkSection(
               IconButton(onClick = { pasteFromClipboard() }) {
                 Icon(
                   imageVector = Icons.Filled.ContentPaste,
-                  contentDescription = "Paste stream URL",
+                  contentDescription = "粘贴流媒体 URL",
                   modifier = Modifier.size(18.dp),
                 )
               }
@@ -364,7 +364,7 @@ private fun StreamLinkSection(
                 IconButton(onClick = { linkUrl = "" }) {
                   Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = "Clear stream URL",
+                    contentDescription = "清除流媒体 URL",
                     modifier = Modifier.size(18.dp),
                   )
                 }
@@ -394,7 +394,7 @@ private fun StreamLinkSection(
             containerColor = MaterialTheme.colorScheme.primary,
           ),
           modifier = Modifier.semantics {
-            contentDescription = "Play stream"
+            contentDescription = "播放流媒体"
           },
         ) {
           Icon(
