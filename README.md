@@ -10,6 +10,12 @@
 
 ---
 
+## 下载
+
+最新汉化版本请前往 [Releases 页面](https://github.com/azxcvn/mpvRx-CN/releases) 下载。
+
+---
+
 ## 修改声明
 
 相比原项目，本汉化版本做出了以下修改：
