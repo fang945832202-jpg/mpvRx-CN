@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name" translatable="false">MpvRx</string>
+  <string name="app_name" translatable="false">MpvRxCN</string>
   <string name="generic_reset">重置</string>
   <string name="generic_share">分享</string>
   <string name="generic_confirm">确认</string>
@@ -424,7 +424,7 @@
   <string name="timer_remaining">剩余 %s</string>
   <string name="toast_sleep_timer_ended">睡眠定时器已结束</string>
   <string name="volume_slider_absolute_value" translatable="false">%d</string>
-  <string name="github_repo_url" translatable="false">https://github.com/Riteshp2001/mpvRx</string>
+  <string name="github_repo_url" translatable="false">https://github.com/azxcvn/mpvRx-CN</string>
   <string name="swap_the_volume_and_brightness_slider">交换音量和亮度滑块</string>
   <string name="pref_player_display_reduce_player_animation">减少播放器动画</string>
   <!-- Animation settings -->
@@ -1583,7 +1583,7 @@
   <string name="about_check_on_startup">启动时检查</string>
   <string name="about_check_now">立即检查更新</string>
   <string name="about_already_latest_toast">已经是最新版本</string>
-  <string name="about_app_name">MpvRx</string>
+  <string name="about_app_name">MpvRxCN</string>
   <string name="about_by_author">作者：Ritesh Pandit</string>
   <string name="about_github">GitHub</string>
   <string name="about_device_info">设备信息</string>

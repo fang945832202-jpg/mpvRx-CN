@@ -194,7 +194,7 @@ object AboutScreen : Screen {
 
                 Column(modifier = Modifier.weight(1f)) {
                   Text(
-                    text = "MpvRx",
+                    text = "MpvRxCN",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = cs.onPrimaryContainer,
@@ -212,6 +212,19 @@ object AboutScreen : Screen {
                   ) {
                     Text(
                       text = "作者 Ritesh Pandit",
+                      modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                      style = MaterialTheme.typography.titleSmall,
+                      fontWeight = FontWeight.SemiBold,
+                      color = cs.onPrimaryContainer,
+                    )
+                  }
+                  Spacer(Modifier.height(6.dp))
+                  Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = cs.primary.copy(alpha = 0.16f),
+                  ) {
+                    Text(
+                      text = "汉化作者 azxcvn",
                       modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
                       style = MaterialTheme.typography.titleSmall,
                       fontWeight = FontWeight.SemiBold,
@@ -317,158 +330,24 @@ object AboutScreen : Screen {
 
         Spacer(Modifier.height(8.dp))
 
-        // Support / Donation Section
-        PreferenceSectionHeader(title = "支持")
-        PreferenceCard {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = Icons.Filled.MonetizationOn,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp),
-                        tint = cs.error,
-                    )
-                    Spacer(Modifier.width(10.dp))
-                    Text(
-                        text = "Buy Me a Coffee",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = cs.onSurface,
-                    )
-                }
-                Spacer(Modifier.height(10.dp))
-                Text(
-                    text = "如果你喜欢 MpvRx，可以考虑支持它的开发。每一点帮助都很重要！",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = cs.onSurfaceVariant,
-                )
-                Spacer(Modifier.height(14.dp))
-                Surface(
-                    shape = RoundedCornerShape(12.dp),
-                    color = cs.primaryContainer.copy(alpha = 0.4f),
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                SafeClipboard.copyPlainText(
-                                    context = context,
-                                    label = "mpvrx_upi_id",
-                                    text = "panditritesh2001@okhdfcbank",
-                                    showToast = false,
-                                )
-                                Toast.makeText(context, "UPI ID 已复制！", Toast.LENGTH_SHORT).show()
-                            }
-                            .padding(horizontal = 16.dp, vertical = 14.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = "UPI ID",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = cs.outline,
-                            )
-                            Spacer(Modifier.height(2.dp))
-                            Text(
-                                text = "panditritesh2001@okhdfcbank",
-                                style = MaterialTheme.typography.titleSmall,
-                                fontWeight = FontWeight.Medium,
-                                color = cs.onSurface,
-                            )
-                        }
-                        Icon(
-                            imageVector = Icons.Default.ContentCopy,
-                            contentDescription = "复制 UPI ID",
-                            modifier = Modifier.size(20.dp),
-                            tint = cs.primary,
-                        )
-                    }
-                }
-                Spacer(Modifier.height(12.dp))
-                Button(
-                    onClick = {
-                        try {
-                            val upiIntent = Intent(
-                                Intent.ACTION_VIEW,
-                                "upi://pay?pa=panditritesh2001@okhdfcbank&pn=Ritesh%20Pandit&cu=INR".toUri(),
-                            )
-                            context.startActivity(upiIntent)
-                        } catch (_: Exception) {
-                            Toast.makeText(context, "未找到 UPI 应用", Toast.LENGTH_SHORT).show()
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth().height(50.dp),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = cs.error,
-                        contentColor = cs.onError,
-                    ),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp),
-                ) {
-                    Icon(Icons.Filled.MonetizationOn, null, modifier = Modifier.size(18.dp))
-                    Spacer(Modifier.width(8.dp))
-                    Text("支持作者", fontWeight = FontWeight.SemiBold)
-                }
-            }
-        }
-
-        Spacer(Modifier.height(8.dp))
-
         // Updates Section (only show if update feature is enabled)
         if (BuildConfig.ENABLE_UPDATE_FEATURE && updateViewModel != null) {
           PreferenceSectionHeader(title = "更新")
           PreferenceCard {
-                val isAutoUpdateEnabled by updateViewModel.isAutoUpdateEnabled.collectAsState()
-                Column {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { updateViewModel.toggleAutoUpdate(!isAutoUpdateEnabled) }
-                            .padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Button(
+                        onClick = { updateViewModel.checkForUpdate(manual = true) },
+                        modifier = Modifier.fillMaxWidth().height(50.dp),
+                        shape = RoundedCornerShape(12.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = cs.secondaryContainer, 
+                            contentColor = cs.onSecondaryContainer
+                        ),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
                     ) {
-                        Column(
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(
-                                text = "自动检查更新",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.SemiBold,
-                                color = cs.onSurface
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "启动时检查",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = cs.outline
-                            )
-                        }
-                        androidx.compose.material3.Switch(
-                            checked = isAutoUpdateEnabled,
-                            onCheckedChange = { updateViewModel.toggleAutoUpdate(it) }
-                        )
-                    }
-                    
-                    PreferenceDivider()
-                    
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Button(
-                            onClick = { updateViewModel.checkForUpdate(manual = true) },
-                            modifier = Modifier.fillMaxWidth().height(50.dp),
-                            shape = RoundedCornerShape(12.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = cs.secondaryContainer, 
-                                contentColor = cs.onSecondaryContainer
-                            ),
-                            elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
-                        ) {
-                             Icon(Icons.Default.Update, null, modifier = Modifier.size(18.dp))
-                             Spacer(Modifier.width(8.dp))
-                             Text("Check for Updates Now", fontWeight = FontWeight.SemiBold)
-                        }
+                         Icon(Icons.Default.Update, null, modifier = Modifier.size(18.dp))
+                         Spacer(Modifier.width(8.dp))
+                         Text("立即检查更新", fontWeight = FontWeight.SemiBold)
                     }
                 }
           }
@@ -562,17 +441,17 @@ private fun collectSystemStats(context: Context): List<Pair<String, String>> {
   val cores = Runtime.getRuntime().availableProcessors()
 
   return listOf(
-    "Manufacturer"  to Build.MANUFACTURER.replaceFirstChar { it.uppercase() },
-    "Device"        to "${Build.MODEL} (${Build.DEVICE})",
-    "Android"       to "${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})",
-    "CPU ABI"       to abis,
-    "CPU Cores"     to "$cores cores",
-    "RAM"           to ramStr,
-    "OpenGL ES"     to glesVersion,
-    "Vulkan"        to vulkanStr,
-    "GPU Renderer"  to (Build.HARDWARE.ifBlank { "Unknown" }),
-    "Board"         to Build.BOARD,
-    "Kernel"        to System.getProperty("os.version", "Unknown"),
+    "制造商"      to Build.MANUFACTURER.replaceFirstChar { it.uppercase() },
+    "设备"        to "${Build.MODEL} (${Build.DEVICE})",
+    "Android"     to "${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})",
+    "CPU 架构"    to abis,
+    "CPU 核心"    to "$cores 核",
+    "内存"        to ramStr,
+    "OpenGL ES"   to glesVersion,
+    "Vulkan"      to vulkanStr,
+    "GPU 渲染器"  to (Build.HARDWARE.ifBlank { "未知" }),
+    "主板"        to Build.BOARD,
+    "内核"        to System.getProperty("os.version", "未知"),
   )
 }
 
