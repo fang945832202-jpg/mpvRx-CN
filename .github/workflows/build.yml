@@ -44,11 +44,19 @@ jobs:
           chmod +x ./gradlew
           ./gradlew dependencies --no-daemon || ./gradlew dependencies --no-daemon || true
 
-      # 先尝试编译 StandardDebug 版本（Debug包更不容易卡在Release的资源压缩和混淆上，且不需要签名）
-      - name: Build with Gradle
-        run: ./gradlew assembleStandardDebug --stacktrace --no-daemon
+      # 第一步：完全跳过 gradlew 赋权和运行，直接使用 GitHub 环境预装的全局 gradle
+      # 并在执行前清理可能存在的错误代理环境变量
+      - name: Build with Global Gradle
+        run: |
+          unset HTTP_PROXY
+          unset HTTPS_PROXY
+          unset http_proxy
+          unset https_proxy
+          gradle assembleStandardDebug --stacktrace --no-daemon
+        env:
+          GRADLE_OPTS: "-Dhttp.proxyHost= -Dhttp.proxyPort= -Dhttps.proxyHost= -Dhttps.proxyPort="
 
-      # 修改产物上传路径，对应 Debug 包的生成路径
+      # 第二步：上传生成的 Debug 产物
       - name: Upload app-arm64-v8a Artifact
         uses: actions/upload-artifact@v4
         with:
