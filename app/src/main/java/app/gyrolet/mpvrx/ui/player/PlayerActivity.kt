@@ -3832,7 +3832,11 @@ class PlayerActivity :
         if (isTrackSheetOpen) {
           return super.onKeyDown(keyCode, event)
         }
-        return super.onKeyDown(keyCode, event)
+
+
+        viewModel.pauseUnpause()
+
+        return true
       }
 
       KeyEvent.KEYCODE_SPACE -> {
@@ -3853,6 +3857,11 @@ class PlayerActivity :
       KeyEvent.KEYCODE_VOLUME_DOWN -> {
         viewModel.changeVolumeBy(-1)
         viewModel.displayVolumeSlider()
+        return true
+      }
+
+       KeyEvent.KEYCODE_MENU -> {
+        viewModel.showControls()
         return true
       }
 
