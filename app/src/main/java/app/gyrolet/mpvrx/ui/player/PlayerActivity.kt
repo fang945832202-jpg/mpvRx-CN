@@ -3778,6 +3778,7 @@ class PlayerActivity :
       viewModel.sheetShown.value == Sheets.SubtitleTracks ||
         viewModel.sheetShown.value == Sheets.AudioTracks
     val isNoSheetOpen = viewModel.sheetShown.value == Sheets.None
+    val areControlsShown = viewModel.controlsShown.value
 
     // If any modifier keys are pressed, delegate to MPVView for proper modifier handling
     val modifierEvent = event?.takeIf {
@@ -3808,7 +3809,7 @@ class PlayerActivity :
           return super.onKeyDown(keyCode, event)
         }
 
-        if (isNoSheetOpen) {
+        if (isNoSheetOpen  && !areControlsShown) {
           when (keyCode) {
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
               viewModel.handleRightDoubleTap()
@@ -3829,10 +3830,14 @@ class PlayerActivity :
           player.onKey(modifierEvent)
           return true
         }
+
         if (isTrackSheetOpen) {
           return super.onKeyDown(keyCode, event)
         }
 
+        if (viewModel.controlsShown.value) {
+          return super.onKeyDown(keyCode, event)
+        }
 
         viewModel.pauseUnpause()
 
